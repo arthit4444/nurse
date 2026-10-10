@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAM QUICK PREP - พยาบาล 2.5 ปี</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@0.321.0/index.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                    },
+                    colors: {
+                        teal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col antialiased">
+
+    <header class="bg-teal-800 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
+                    <div class="bg-white/10 p-2 rounded-lg backdrop-blur-sm">
+                        <svg class="w-6 h-6 text-teal-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight">EXAM QUICK PREP</h1>
+                        <p class="text-xs text-teal-200">หลักสูตรพยาบาลศาสตรบัณฑิต (2.5 ปี)</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-1 text-sm font-medium">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 py-2 rounded-md bg-teal-900/50 text-white transition">หน้าหลัก</button>
+                    <button onclick="switchTab('part1')" id="nav-part1" class="px-3 py-2 rounded-md hover:bg-teal-700 text-teal-100 transition">Part 1 English</button>
+                    <button onclick="switchTab('part2')" id="nav-part2" class="px-3 py-2 rounded-md hover:bg-teal-700 text-teal-100 transition">Part 2 Analytical</button>
+                    <button onclick="switchTab('part3')" id="nav-part3" class="px-3 py-2 rounded-md hover:bg-teal-700 text-teal-100 transition">Part 3 Competency</button>
+                    <button onclick="switchTab('part4')" id="nav-part4" class="px-3 py-2 rounded-md hover:bg-teal-700 text-teal-100 transition">Part 4 Interview</button>
+                    <button onclick="switchTab('mock')" id="nav-mock" class="px-3 py-2 rounded-md bg-amber-500 hover:bg-amber-600 text-white font-semibold transition">Mock Test (24 ข้อ)</button>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-md text-teal-200 hover:text-white hover:bg-teal-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-teal-900 border-t border-teal-700 px-2 pt-2 pb-3 space-y-1">
+            <button onclick="switchTab('dashboard'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white font-medium hover:bg-teal-800">หน้าหลัก</button>
+            <button onclick="switchTab('part1'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-teal-100 font-medium hover:bg-teal-800">Part 1 English</button>
+            <button onclick="switchTab('part2'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-teal-100 font-medium hover:bg-teal-800">Part 2 Analytical</button>
+            <button onclick="switchTab('part3'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-teal-100 font-medium hover:bg-teal-800">Part 3 Competency</button>
+            <button onclick="switchTab('part4'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-teal-100 font-medium hover:bg-teal-800">Part 4 Interview</button>
+            <button onclick="switchTab('mock'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md bg-amber-500 text-white font-semibold hover:bg-amber-600">Mock Test จับเวลา 24 ข้อ</button>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- DASHBOARD VIEW -->
+        <section id="view-dashboard" class="space-y-6">
+            <div class="bg-gradient-to-r from-teal-800 to-teal-600 rounded-2xl p-6 sm:p-8 text-white shadow-lg">
+                <div class="max-w-3xl">
+                    <span class="inline-block px-3 py-1 bg-teal-900/60 rounded-full text-xs font-semibold tracking-wider uppercase mb-3 border border-teal-400/30">Nurse Inspired by Rainyfon (v1.3)</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-2">คู่มือเตรียมสอบ พยาบาล 2.5 ปี</h2>
+                    <p class="text-teal-100 text-sm sm:text-base leading-relaxed mb-6">
+                        "เตรียมให้ตรงเกณฑ์ • ฝึกวิธีคิด • เข้าใจเหตุผลก่อนตอบ" สำหรับผู้สำเร็จการศึกษาระดับปริญญาตรีสาขาอื่น
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="switchTab('mock')" class="bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl font-medium shadow-md hover:shadow-lg transition flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>เริ่มต้นทำ Mock Test 24 ข้อ (28 นาที)</span>
+                        </button>
+                        <button onclick="switchTab('part1')" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl font-medium backdrop-blur-sm transition">
+                            เริ่มฝึกตาม Part (ครบทุกข้อ)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Criteria Box -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    เกณฑ์คัดเลือกที่ต้องรู้ (ตามประกาศสถาบันพระบรมราชชนก)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-xs text-slate-500 mb-1">PART 1: English</div>
+                        <div class="text-xl font-bold text-slate-800">60 ข้อ</div>
+                        <div class="text-xs text-teal-700 font-medium mt-1">สัดส่วน 30-35%</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-xs text-slate-500 mb-1">PART 2: Analytical</div>
+                        <div class="text-xl font-bold text-slate-800">40 ข้อ</div>
+                        <div class="text-xs text-teal-700 font-medium mt-1">สัดส่วน 30-35%</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-xs text-slate-500 mb-1">PART 3: Competency</div>
+                        <div class="text-xl font-bold text-slate-800">30 ข้อ</div>
+                        <div class="text-xs text-teal-700 font-medium mt-1">สัดส่วน 20%</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-xs text-slate-500 mb-1">PART 4: Interview</div>
+                        <div class="text-xl font-bold text-slate-800">100 คะแนน</div>
+                        <div class="text-xs text-teal-700 font-medium mt-1">สัดส่วน 10-20%</div>
+                    </div>
+                </div>
+                <div class="p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs sm:text-sm text-amber-800 flex items-start gap-2">
+                    <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span><strong>เกณฑ์ขั้นต่ำสำคัญ:</strong> ข้อเขียนแต่ละด้านต้องไม่น้อยกว่า <strong>30%</strong> และสัมภาษณ์ต้องไม่น้อยกว่า <strong>60%</strong> (รวมข้อเขียน 130 ข้อ เวลา 2 ชม. 30 นาที)</span>
+                </div>
+            </div>
+
+            <!-- Categories Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Part 1 Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between hover:border-teal-500 transition cursor-pointer" onclick="switchTab('part1')">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">PART 1</span>
+                            <span class="text-xs text-slate-400">Vocabulary, Grammar, Reading, Com, Cloze</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">PART 1 — ENGLISH</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">ฝึกทักษะภาษาอังกฤษเพื่อการศึกษาต่อพยาบาล ครบทุกหัวข้อตามต้นฉบับ พร้อมคำอธิบายและวิธีคิดแบบ Step-by-Step</p>
+                    </div>
+                    <div class="text-sm font-semibold text-teal-600 flex items-center gap-1">
+                        <span>เริ่มทำแบบทดสอบ Part 1</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                </div>
+
+                <!-- Part 2 Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between hover:border-teal-500 transition cursor-pointer" onclick="switchTab('part2')">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">PART 2</span>
+                            <span class="text-xs text-slate-400">คิดวิเคราะห์ เหตุและผล การแก้ปัญหา</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">PART 2 — ANALYTICAL THINKING</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">ฝึกวิธีคิดอย่างมีเหตุผล ตรรกศาสตร์ การเปรียบเทียบ Fact vs Opinion และ Backward Reasoning</p>
+                    </div>
+                    <div class="text-sm font-semibold text-teal-600 flex items-center gap-1">
+                        <span>เริ่มทำแบบทดสอบ Part 2</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                </div>
+
+                <!-- Part 3 Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between hover:border-teal-500 transition cursor-pointer" onclick="switchTab('part3')">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-semibold">PART 3</span>
+                            <span class="text-xs text-slate-400">สมรรถนะการทำงาน จริยธรรม การทำงานทีม</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">PART 3 — FUTURE WORK COMPETENCY</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">การสื่อสาร ทีมเวิร์ก การแก้ปัญหา จริยธรรม และการจัดลำดับความสำคัญในสถานการณ์จำลอง</p>
+                    </div>
+                    <div class="text-sm font-semibold text-teal-600 flex items-center gap-1">
+                        <span>เริ่มทำแบบทดสอบ Part 3</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                </div>
+
+                <!-- Part 4 Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between hover:border-teal-500 transition cursor-pointer" onclick="switchTab('part4')">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-semibold">PART 4</span>
+                            <span class="text-xs text-slate-400">คำถามสัมภาษณ์ทั่วไป & สถานการณ์</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">PART 4 — INTERVIEW PREPARATION</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">แนวคำถามสัมภาษณ์ 30 ข้อ + สถานการณ์ยาก 10 ข้อ กรอบฝึกตอบแบบ E-R-E-F พร้อมพื้นที่บันทึกร่างคำตอบ</p>
+                    </div>
+                    <div class="text-sm font-semibold text-teal-600 flex items-center gap-1">
+                        <span>ฝึกเตรียมสัมภาษณ์ Part 4</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 1 VIEW -->
+        <section id="view-part1" class="hidden space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <h2 class="text-2xl font-bold text-slate-800">PART 1 — ENGLISH</h2>
+                <p class="text-sm text-slate-500">Vocabulary, Grammar, Reading Comprehension, Communication, Cloze & Mini Practice</p>
+            </div>
+            
+            <div id="container-part1" class="space-y-6"></div>
+
+            <div id="result-part1" class="hidden"></div>
+
+            <div class="flex justify-end pt-4 border-t border-slate-200">
+                <button onclick="submitSection('part1')" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-xl font-bold shadow-lg transition text-lg">
+                    ตรวจคะแนน Part 1 & ดูเฉลย
+                </button>
+            </div>
+        </section>
+
+        <!-- PART 2 VIEW -->
+        <section id="view-part2" class="hidden space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <h2 class="text-2xl font-bold text-slate-800">PART 2 — ANALYTICAL THINKING</h2>
+                <p class="text-sm text-slate-500">การคิดวิเคราะห์ เหตุและผล ข้อเท็จจริง เปรียบเทียบ และการแก้ปัญหา</p>
+            </div>
+
+            <div id="container-part2" class="space-y-6"></div>
+
+            <div id="result-part2" class="hidden"></div>
+
+            <div class="flex justify-end pt-4 border-t border-slate-200">
+                <button onclick="submitSection('part2')" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-xl font-bold shadow-lg transition text-lg">
+                    ตรวจคะแนน Part 2 & ดูเฉลย
+                </button>
+            </div>
+        </section>
+
+        <!-- PART 3 VIEW -->
+        <section id="view-part3" class="hidden space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <h2 class="text-2xl font-bold text-slate-800">PART 3 — FUTURE WORK COMPETENCY</h2>
+                <p class="text-sm text-slate-500">การสื่อสาร การทำงานเป็นทีม จริยธรรม และการจัดลำดับความสำคัญ</p>
+            </div>
+
+            <div id="container-part3" class="space-y-6"></div>
+
+            <div id="result-part3" class="hidden"></div>
+
+            <div class="flex justify-end pt-4 border-t border-slate-200">
+                <button onclick="submitSection('part3')" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-xl font-bold shadow-lg transition text-lg">
+                    ตรวจคะแนน Part 3 & ดูเฉลย
+                </button>
+            </div>
+        </section>
+
+        <!-- PART 4 VIEW (Interview) -->
+        <section id="view-part4" class="hidden space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <h2 class="text-2xl font-bold text-slate-800">PART 4 — INTERVIEW PREPARATION</h2>
+                <p class="text-sm text-slate-500">คำถามสัมภาษณ์ 30 ข้อ + สถานการณ์ยาก 10 ข้อ (กรอบฝึกตอบแบบ E-R-E-F)</p>
+            </div>
+            <div id="container-part4" class="space-y-6"></div>
+        </section>
+
+        <!-- MOCK TEST VIEW -->
+        <section id="view-mock" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">MOCK TEST — ชุดฝึกจับเวลา 24 ข้อ</h2>
+                    <p class="text-sm text-slate-500">ย่อสัดส่วนจากข้อสอบจริง (24 ข้อ 28 นาที) ทดลองทำจนครบแล้วส่งคำตอบเพื่อตรวจผล</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div id="timer-box" class="bg-slate-900 text-amber-400 font-mono text-2xl px-4 py-2 rounded-xl font-bold border border-slate-700 shadow-inner">
+                        28:00
+                    </div>
+                    <button id="btn-start-mock" onclick="startMockTimer()" class="bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl font-medium transition shadow">
+                        เริ่มจับเวลา
+                    </button>
+                </div>
+            </div>
+
+            <div id="result-mock" class="hidden"></div>
+            <div id="container-mock" class="space-y-6"></div>
+
+            <div class="flex justify-end pt-4">
+                <button onclick="submitMockTest()" class="bg-teal-700 hover:bg-teal-800 text-white px-8 py-3 rounded-xl font-bold shadow-lg transition text-lg">
+                    ส่งข้อสอบ MOCK TEST & ดูผลคะแนน
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 mt-12 text-center text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-medium text-slate-300">EXAM QUICK PREP — พยาบาล 2.5 ปี (Nurse Inspired by Rainyfon v1.3)</p>
+            <p class="text-slate-500">คู่มือเตรียมสอบ ไม่ใช่ข้อสอบจริง ไม่ใช่เอกสารทางการของสถาบัน • อ้างอิงประกาศสถาบันพระบรมราชชนก 23 ก.ย. 2569</p>
+        </div>
+    </footer>
+
+    <script>
+        const quizData = {
+            part1: [
+                // Vocabulary
+                { id: 'p1_v1', cat: 'Vocabulary', q: '1) The nurse was very calm during the emergency, even though everyone around her was worried.', options: ['A. angry', 'B. relaxed', 'C. confused', 'D. careless'], ans: 1, exp: 'คำว่า even though แสดงความขัดแย้ง คนอื่น worried แต่พยาบาล calm จึงตรงกับ relaxed' },
+                { id: 'p1_v2', cat: 'Vocabulary', q: '2) Regular exercise can reduce stress and improve sleep quality.', options: ['A. increase', 'B. decrease', 'C. explain', 'D. measure'], ans: 1, exp: 'บริบทบอกผลดีของ exercise ต่อ stress จึงตีความ reduce = ลดลง (decrease)' },
+                { id: 'p1_v3', cat: 'Vocabulary', q: '3) The instructions were clear, so everyone understood what to do.', options: ['A. easy to understand', 'B. difficult to remember', 'C. very long', 'D. unnecessary'], ans: 0, exp: 'คำว่า so เชื่อมผลลัพธ์ว่า everyone understood จึงบอกความหมายว่า clear = easy to understand' },
+                { id: 'p1_v4', cat: 'Vocabulary', q: '4) The manager gave a brief explanation before the meeting started.', options: ['A. short', 'B. angry', 'C. private', 'D. uncertain'], ans: 0, exp: 'brief ในบริบทนี้หมายถึงสั้น กระชับ (short)' },
+                { id: 'p1_v5', cat: 'Vocabulary', q: '5) The new system is efficient; it saves both time and effort.', options: ['A. wasteful', 'B. effective', 'C. dangerous', 'D. complicated'], ans: 1, exp: 'คำอธิบายหลัง semicolon บอกว่าช่วยประหยัดเวลาและแรง ดังนั้น efficient = effective' },
+                
+                // Grammar
+                { id: 'p1_g1', cat: 'Grammar', q: '1) The students _____ preparing for the examination.', options: ['A. is', 'B. are', 'C. was', 'D. be'], ans: 1, exp: 'students เป็นพหูพจน์ จึงใช้ are' },
+                { id: 'p1_g2', cat: 'Grammar', q: '2) She _____ nursing as a career because she wants to help people.', options: ['A. choose', 'B. chooses', 'C. choosing', 'D. chosen'], ans: 1, exp: 'She เป็นประธานเอกพจน์ ข้อความแสดงเหตุผลทั่วไป จึงใช้ Present Simple (chooses)' },
+                { id: 'p1_g3', cat: 'Grammar', q: '3) They _____ the orientation yesterday.', options: ['A. attend', 'B. attended', 'C. will attend', 'D. attending'], ans: 1, exp: 'คำว่า yesterday ชี้เหตุการณ์ในอดีต จึงใช้ attended' },
+                { id: 'p1_g4', cat: 'Grammar', q: '4) He studied hard _____ he wanted to pass the examination.', options: ['A. because', 'B. but', 'C. although', 'D. however'], ans: 0, exp: 'ประโยคหลังเป็นเหตุผลของการเรียนหนัก จึงใช้ because' },
+                { id: 'p1_g5', cat: 'Grammar', q: '5) _____ she was tired, she completed the assignment.', options: ['A. Because', 'B. Although', 'C. Therefore', 'D. So'], ans: 1, exp: 'ประโยคมีความขัดแย้ง เหนื่อยแต่ยังทำเสร็จ ใช้ Although' },
+                { id: 'p1_g6', cat: 'Grammar', q: '6) The interview starts _____ 9:00 a.m.', options: ['A. in', 'B. on', 'C. at', 'D. for'], ans: 2, exp: 'ใช้ at กับเวลาเฉพาะเจาะจง' },
+                { id: 'p1_g7', cat: 'Grammar', q: '7) Applicants should _____ the instructions carefully.', options: ['A. read', 'B. reads', 'C. reading', 'D. readed'], ans: 0, exp: 'หลัง modal verb (should) ต้องตามด้วยกริยาช่อง 1 ไม่เติมอะไร (read)' },
+                { id: 'p1_g8', cat: 'Grammar', q: '8) The documents _____ checked before submission.', options: ['A. is', 'B. are', 'C. be', 'D. was'], ans: 1, exp: 'โครงสร้าง Passive Voice; documents เป็นพหูพจน์ จึงใช้ are checked' },
+                { id: 'p1_g9', cat: 'Grammar', q: '9) She arrived early, _____ she had enough time to prepare.', options: ['A. so', 'B. but', 'C. although', 'D. unless'], ans: 0, exp: 'ประโยคหลังเป็นผลลัพธ์ของการมาถึงเร็ว จึงใช้ so' },
+
+                // Reading Comprehension 1
+                { id: 'p1_r1', cat: 'Reading Passage 1', passage: 'Many adults decide to return to university to study a new profession. Some choose nursing because they want a career that allows them to help others and contribute to society. Returning to study can be challenging because students may have work or family responsibilities. Good planning, time management, and support from family can help them succeed.', q: '1) Why do some adults choose nursing?', options: ['A. They want shorter working hours.', 'B. They want to help others and contribute to society.', 'C. They want to avoid studying.', 'D. They want to work only at home.'], ans: 1, exp: 'ตรงกับข้อความในบทอ่าน: "they want a career that allows them to help others and contribute to society"' },
+                { id: 'p1_r2', cat: 'Reading Passage 1', q: '2) What challenge is mentioned in the passage?', options: ['A. Students cannot study at university.', 'B. Students may have work or family responsibilities.', 'C. Nursing requires no planning.', 'D. Families do not support students.'], ans: 1, exp: 'ตรงกับข้อความ "challenging because students may have work or family responsibilities."' },
+                { id: 'p1_r3', cat: 'Reading Passage 1', q: '3) According to the passage, what can help students succeed?', options: ['A. Avoiding responsibilities', 'B. Studying alone', 'C. Planning, time management, and family support', 'D. Changing universities'], ans: 2, exp: 'ประโยคสุดท้ายระบุ "Good planning, time management, and support from family can help them succeed."' },
+
+                // Reading Comprehension 2
+                { id: 'p1_r4', cat: 'Reading Passage 2', passage: 'A student prepares for an important test by studying in short sessions every day. She reviews mistakes after each practice set and adjusts her plan when she notices weak areas. Over time, she becomes more confident and completes questions faster.', q: '1) What is the main idea?', options: ['A. The student studies only once.', 'B. Regular practice and review help improve performance.', 'C. The student dislikes tests.', 'D. Speed is the only important skill.'], ans: 1, exp: 'ทุกประโยคสนับสนุนเรื่องการฝึกซ้ำ สม่ำเสมอ และทบทวนเพื่อพัฒนาผลงาน' },
+                { id: 'p1_r5', cat: 'Reading Passage 2', q: '2) What can be inferred?', options: ['A. She never makes mistakes.', 'B. She uses feedback to improve.', 'C. She studies without a plan.', 'D. She stops practicing.'], ans: 1, exp: 'การ review mistakes และ adjust plan สะท้อนว่าเธอใช้ feedback พัฒนาตนเอง' },
+
+                // Everyday Communication
+                { id: 'p1_c1', cat: 'Communication', q: '1) A friend says: "I\'m very nervous about the interview tomorrow."', options: ['A. You should stop worrying.', 'B. That is your problem.', 'C. I understand. Let\'s practice together.', 'D. You will definitely fail.'], ans: 2, exp: 'แสดงความเข้าอกเข้าใจ (empathy) และเสนอการช่วยเหลือ' },
+                { id: 'p1_c2', cat: 'Communication', q: '2) "Could you please explain this again?"', options: ['A. Of course.', 'B. Never mind.', 'C. I don\'t care.', 'D. You are wrong.'], ans: 0, exp: 'ตอบรับคำขออย่างสุภาพ' },
+                { id: 'p1_c3', cat: 'Communication', q: '3) "I\'m sorry I\'m late." What is the most appropriate response in a formal setting?', options: ['A. That\'s all right. Please join us.', 'B. Whatever.', 'C. You always do this!', 'D. Go away.'], ans: 0, exp: 'สุภาพ เหมาะสมกับบริบททางการ' },
+                { id: 'p1_c4', cat: 'Communication', q: '4) "Would you mind waiting for a moment?"', options: ['A. Not at all.', 'B. I mind everything.', 'C. You are incorrect.', 'D. No idea.'], ans: 0, exp: 'Not at all แปลว่า ไม่รังเกียจ เป็นการตอบรับคำขอรออย่างสุภาพ' },
+
+                // Cloze
+                { id: 'p1_cl1', cat: 'Cloze', q: '1) Good time management is important for students. They should _____ their study schedule carefully and allow enough time for rest.', options: ['A. plan', 'B. plans', 'C. planned', 'D. planning'], ans: 0, exp: 'หลัง modal verb (should) ใช้ verb ช่อง 1 (plan)' },
+                { id: 'p1_cl2', cat: 'Cloze', q: '2) The team discussed the problem _____ they could find a practical solution.', options: ['A. so that', 'B. although', 'C. unless', 'D. however'], ans: 0, exp: 'เชื่อมวัตถุประสงค์ของการพูดคุย ใช้ so that' },
+
+                // English Mini Practice
+                { id: 'p1_mp1', cat: 'Mini Practice', q: '1) The applicant arrived early _____ she did not want to miss the interview.', options: ['A. because', 'B. although', 'C. but', 'D. however'], ans: 0, exp: 'because เชื่อมเหตุผลของการมาถึงเร็ว' },
+                { id: 'p1_mp2', cat: 'Mini Practice', q: '2) Teamwork is essential in many healthcare settings. "essential" means:', options: ['A. unnecessary', 'B. important', 'C. difficult', 'D. optional'], ans: 1, exp: 'essential หมายถึง จำเป็นหรือสำคัญมาก (important)' },
+                { id: 'p1_mp3', cat: 'Mini Practice', q: '3) The students _____ their examination next week.', options: ['A. take', 'B. took', 'C. will take', 'D. taking'], ans: 2, exp: 'next week ชี้อนาคต ใช้ will take' },
+                { id: 'p1_mp4', cat: 'Mini Practice', q: '4) If you do not understand the question, what should you do first?', options: ['A. Choose any answer.', 'B. Read the question again carefully.', 'C. Stop the examination.', 'D. Ask another applicant.'], ans: 1, exp: 'ควรอ่านคำถามซ้ำอย่างรอบคอบก่อนตัดสินใจ' },
+                { id: 'p1_mp5', cat: 'Mini Practice', q: '5) "Thank you for helping me."', options: ['A. You\'re welcome.', 'B. I\'m sorry.', 'C. Never.', 'D. Why?'], ans: 0, exp: 'You\'re welcome เป็นคำตอบรับขอบคุณมาตรฐาน' }
+            ],
+
+            part2: [
+                { id: 'p2_1', cat: 'Analytical', q: '1) นักศึกษากลุ่มหนึ่งพบว่า เมื่อแบ่งเวลาอ่านหนังสือเป็นช่วงสั้น ๆ วันละหลายครั้ง ผลการทดสอบดีขึ้น เมื่อเทียบกับการอ่านครั้งเดียวก่อนสอบ ข้อสรุปใดเหมาะสมที่สุด?', options: ['A. การอ่านหนังสือนานที่สุดทำให้ได้คะแนนดีที่สุด', 'B. การแบ่งเวลาอ่านอย่างสม่ำเสมออาจช่วยให้ผลการทดสอบดีขึ้น', 'C. นักศึกษาทุกคนควรหยุดอ่านหนังสือก่อนสอบ', 'D. ผลสอบขึ้นอยู่กับจำนวนหนังสือที่มี'], ans: 1, exp: 'ข้อมูลเชื่อมว่าอ่านสม่ำเสมออาจช่วยให้ผลดีขึ้น ไม่ควรสรุปแบบสุดโต่งหรือยืนยันกับทุกคน' },
+                { id: 'p2_2', cat: 'Analytical', q: '2) โรงพยาบาลแห่งหนึ่งพบว่า หลังเริ่มใช้ระบบนัดหมายออนไลน์ ระยะเวลารอเฉลี่ยของผู้รับบริการลดลง ข้อใดสอดคล้องกับข้อมูลมากที่สุด?', options: ['A. ระบบนัดหมายออนไลน์อาจมีส่วนช่วยลดระยะเวลารอ', 'B. ผู้รับบริการทุกคนชอบระบบออนไลน์', 'C. การรอทั้งหมดเกิดจากเจ้าหน้าที่ทำงานช้า', 'D. ระบบออนไลน์ทำให้โรงพยาบาลไม่มีปัญหาอีกต่อไป'], ans: 0, exp: 'ข้อมูลบอกเพียงผลหลังใช้ระบบ จึงสรุปได้เพียงว่าอาจมีส่วนช่วย ไม่ใช่สาเหตุเดียว' },
+                { id: 'p2_3', cat: 'Analytical', q: '3) "นักศึกษาที่นอนอย่างเพียงพอมีแนวโน้มรายงานว่ามีสมาธิในการเรียนมากกว่านักศึกษาที่พักผ่อนไม่เพียงพอ" ข้อสรุปใดเหมาะสมที่สุด?', options: ['A. การนอน 8 ชั่วโมงทำให้สอบผ่านทุกคน', 'B. การพักผ่อนเพียงพออาจสัมพันธ์กับสมาธิที่ดีขึ้น', 'C. คนที่นอนน้อยไม่สามารถเรียนพยาบาลได้', 'D. สมาธิขึ้นอยู่กับการนอนเพียงอย่างเดียว'], ans: 1, exp: 'คำว่า "มีแนวโน้ม" ชี้ถึงความสัมพันธ์ ข้อสรุป B เหมาะสมและไม่เกินหลักฐาน' },
+                { id: 'p2_4', cat: 'Analytical', q: '4) ข้อใดเป็น "ข้อเท็จจริง" มากที่สุด?', options: ['A. การเรียนพยาบาลเป็นการเรียนที่ดีที่สุด', 'B. นักศึกษาพยาบาลทุกคนควรชอบวิชาภาษาอังกฤษ', 'C. หลักสูตรมีทั้งการเรียนภาคทฤษฎีและภาคปฏิบัติ', 'D. การฝึกปฏิบัติเป็นส่วนที่น่ากลัวที่สุด'], ans: 2, exp: 'ข้อ C ตรวจสอบความถูกต้องตามหลักสูตรได้จริง ส่วนข้ออื่นเป็นความคิดเห็น (Opinion)' },
+                { id: 'p2_5', cat: 'Analytical', table: 'ข้อมูลคะแนนผู้สมัคร:\nA: English 42, Analytical 32, Competency 22\nB: English 48, Analytical 25, Competency 20\nC: English 35, Analytical 35, Competency 25\nD: English 50, Analytical 28, Competency 18', q: '5) หากผู้สมัคร D ต้องการพัฒนาหมวดที่ต่ำที่สุด ควรโฟกัสเรื่องใดก่อน?', options: ['A. English', 'B. Analytical', 'C. Competency', 'D. ทุกหมวดเท่ากัน'], ans: 2, exp: 'D ได้ Competency 18 จาก 30 คิดเป็น 60% ซึ่งต่ำที่สุดเมื่อคิดเป็นร้อยละ (English ได้ 83%, Analytical ได้ 70%)' },
+                { id: 'p2_6', cat: 'Analytical', q: '6) สมมติว่าผู้สมัครต้องเข้าสอบเวลา 09.00 น. ต้องไปถึงก่อนอย่างน้อย 30 นาที และเดินทางประมาณ 90 นาที ควรออกจากบ้านช้าที่สุดกี่โมง?', options: ['A. 06.30 น.', 'B. 07.00 น.', 'C. 07.30 น.', 'D. 08.00 น.'], ans: 1, exp: 'สอบ 09.00 -> ต้องถึง 08.30 -> ลบเวลาเดินทาง 90 นาที (1 ชม. 30 นาที) = 07.00 น.' },
+                { id: 'p2_7', cat: 'Analytical', q: '7) สมมติว่าเวลา 14.30 น. ผู้สมัครยังไม่ได้สมัครออนไลน์ และระบบจะปิดเวลา 16.00 น. ขณะเดียวกันยังมีงานอ่านภาษาอังกฤษ ซื้อสมุด และดูคลิปติว ควรทำสิ่งใดก่อน?', options: ['A. สมัครออนไลน์', 'B. อ่านภาษาอังกฤษ', 'C. ซื้อสมุด', 'D. ดูคลิปติว'], ans: 0, exp: 'การสมัครมี Deadline ใกล้และเสี่ยงต่อการเสียสิทธิ์หากทำไม่ทัน' },
+                { id: 'p2_8', cat: 'Analytical', q: '8) ผู้สมัครมีเวลาอ่าน 2 ชั่วโมง และผลฝึกคือ English 75% / Analytical 45% / Competency 60% ควรจัดเวลาอย่างไร?', options: ['A. อ่าน English ทั้ง 2 ชั่วโมง', 'B. เน้น Analytical และแบ่งเวลาทบทวน Competency', 'C. อ่านเรื่องที่ชอบที่สุด', 'D. ไม่ต้องอ่าน'], ans: 1, exp: 'Analytical เป็นจุดอ่อนที่สุด จึงควรได้รับเวลาเพิ่ม แต่ไม่ละทิ้งด้านอื่น' },
+                { id: 'p2_9', cat: 'Analytical', q: '9) สมาชิกกลุ่มส่งงานช้า ทำให้ทีมใกล้พลาด deadline สิ่งแรกที่ควรทำคืออะไร?', options: ['A. ตำหนิเพื่อนในกลุ่มแชต', 'B. ลบชื่อเพื่อนออกทันที', 'C. ตรวจสอบสาเหตุและสถานะงานก่อน แล้ววางแผนแก้ร่วมกัน', 'D. ส่งงานที่ไม่สมบูรณ์ทันที'], ans: 2, exp: 'การแก้ปัญหาต้องเริ่มจาก Define & Analyze หาสาเหตุและสถนการณ์จริงก่อนลงมือทำ' },
+                
+                // Analytical Mini Practice
+                { id: 'p2_mp1', cat: 'Mini Practice', q: '1) มีเวลาอ่านวันละ 3 ชั่วโมงและอ่อน English มากที่สุด ควรทำอย่างไร?', options: ['A. แบ่งทุกหมวดเท่ากันเสมอ', 'B. เพิ่มเวลา English แต่ยังฝึกอีกสองหมวด', 'C. อ่านเฉพาะ English', 'D. อ่านเฉพาะหมวดที่ชอบ'], ans: 1, exp: 'ให้น้ำหนักจุดอ่อนมากขึ้น แต่ยังต้องรักษาความพร้อมหมวดอื่น' },
+                { id: 'p2_mp2', cat: 'Mini Practice', q: '2) "ผู้สมัครที่ทำ Mock Test หลายครั้งมักทำข้อสอบได้คล่องขึ้น" สรุปใดเหมาะสมที่สุด?', options: ['A. Mock Test รับประกันว่าจะสอบผ่าน', 'B. การฝึกซ้ำอาจช่วยเพิ่มความคุ้นเคย', 'C. ทุกคนต้องทำจำนวนเท่ากัน', 'D. ไม่ทำจะสอบไม่ผ่านแน่นอน'], ans: 1, exp: 'ข้อความบอกเพียงว่าอาจช่วยเพิ่มความคุ้นเคย ไม่ได้รับประกันผลสอบ' },
+                { id: 'p2_mp3', cat: 'Mini Practice', q: '3) A สูงกว่า B และ B สูงกว่า C ข้อใดต้องเป็นจริง?', options: ['A. C สูงกว่า A', 'B. A สูงกว่า C', 'C. A เท่ากับ C', 'D. สรุปไม่ได้'], ans: 1, exp: 'จาก A > B และ B > C ตรรกศาสตร์อนุมานได้ว่า A > C' },
+                { id: 'p2_mp4', cat: 'Mini Practice', q: '4) ทีมได้รับข้อมูลใหม่ที่ขัดกับแผนเดิม ควรทำอย่างไร?', options: ['A. ใช้แผนเดิม', 'B. ปฏิเสธข้อมูล', 'C. ประเมินข้อมูลใหม่และปรับแผนหากมีหลักฐานพอ', 'D. ให้คนอื่นตัดสินใจทั้งหมด'], ans: 2, exp: 'ควรประเมินหลักฐานใหม่ก่อนปรับแผน ไม่ยึดแผนเดิมโดยหลับตา' },
+                { id: 'p2_mp5', cat: 'Mini Practice', q: '5) สมมติว่าการประชุมเริ่ม 13.30 น. ควรถึงก่อน 20 นาที และเดินทาง 45 นาที ควรออกอย่างช้าที่สุดกี่โมง?', options: ['A. 12.25 น.', 'B. 12.45 น.', 'C. 13.10 น.', 'D. 13.30 น.'], ans: 0, exp: 'ประชุม 13.30 -> ต้องถึง 13.10 -> ลบเวลาเดินทาง 45 นาที = 12.25 น.' }
+            ],
+
+            part3: [
+                { id: 'p3_1', cat: 'Communication', q: '1) คุณกำลังทำงานกลุ่ม เพื่อนคนหนึ่งเข้าใจงานไม่ตรงกับทีมและเริ่มทำผิดทิศทาง ควรทำอย่างไร?', options: ['A. ปล่อยให้ทำต่อ', 'B. ตำหนิในกลุ่มแชต', 'C. พูดคุยให้ชัดเจนว่าเป้าหมายของงานคืออะไร และตรวจสอบความเข้าใจร่วมกัน', 'D. ทำงานแทนทั้งหมด'], ans: 2, exp: 'แก้ไขข้อคลาดเคลื่อนโดย Clarify > Check understanding > Move forward' },
+                { id: 'p3_2', cat: 'Communication', q: '2) เพื่อนร่วมทีมพูดว่า "ช่วงนี้ฉันส่งงานช้า เพราะมีปัญหาที่บ้าน" คำตอบใดเหมาะสมที่สุด?', options: ['A. ทุกคนก็มีปัญหาเหมือนกัน', 'B. เข้าใจนะ เรามาดูกันว่าจะปรับงานส่วนไหนได้บ้างโดยยังส่งทัน', 'C. ถ้างั้นไม่ต้องทำงานแล้ว', 'D. คุณควรจัดการชีวิตให้ดีกว่านี้'], ans: 1, exp: 'รวมความเข้าใจ (Empathy) และการนำทีมหาทางออก (Problem Solving)' },
+                { id: 'p3_3', cat: 'Teamwork', q: '3) ทีมมีสมาชิก 4 คน แต่งานส่วนใหญ่ไปตกอยู่ที่คนเดียว ควรจัดการอย่างไร?', options: ['A. ให้คนที่เก่งที่สุดทำต่อ', 'B. แบ่งงานใหม่ตามความสามารถและเวลาของแต่ละคน พร้อมกำหนด deadline', 'C. ยกเลิกงานกลุ่ม', 'D. รอให้อาจารย์แก้'], ans: 1, exp: 'สร้างความรับผิดชอบร่วมและกระจายงานอย่างเหมาะสม' },
+                { id: 'p3_4', cat: 'Teamwork', q: '4) สมาชิกสองคนมีความเห็นไม่ตรงกัน ควรทำอย่างไรเป็นอันดับแรก?', options: ['A. เลือกข้างคนที่สนิทกว่า', 'B. ให้ทั้งสองอธิบายเหตุผลและดูข้อมูลที่สนับสนุน', 'C. ให้คนเสียงดังที่สุดตัดสิน', 'D. หลีกเลี่ยงไม่พูดเรื่องนี้'], ans: 1, exp: 'จัดการความขัดแย้งด้วยเหตุผลและข้อมูลอ้างอิง' },
+                { id: 'p3_5', cat: 'Problem Solving', q: '5) ทีมส่งงานช้าซ้ำหลายครั้ง สิ่งใดควรทำมากที่สุด?', options: ['A. เร่งทำงานให้เร็วขึ้นทุกครั้ง', 'B. หาสาเหตุว่าความล่าช้าเกิดจากอะไร แล้วปรับวิธีทำงาน', 'C. เพิ่มข้อความเตือนอย่างเดียว', 'D. ยอมรับว่าแก้ไม่ได้'], ans: 1, exp: 'แก้ปัญหาที่สาเหตุรากเหง้า (Root cause) ไม่ใช่แก้แค่ปลายเหตุ' },
+                { id: 'p3_6', cat: 'Problem Solving', q: '6) หลังปรับวิธีทำงานแล้ว ปัญหายังเกิดซ้ำ ขั้นตอนต่อไปควรเป็นอะไร?', options: ['A. ใช้วิธีเดิมต่อ', 'B. ประเมินผลและปรับแผนใหม่', 'C. เลิกติดตามผล', 'D. โทษคนใดคนหนึ่ง'], ans: 1, exp: 'กระบวนการแก้ปัญหาต้องมีการ Review และปรับเปลี่ยนเมื่อผลลัพธ์ยังไม่สำเร็จ' },
+                { id: 'p3_7', cat: 'Problem Solving', q: '7) ผู้สมัครมีเวลาเหลือ 10 วัน: English ยังอ่อน / Analytical ปานกลาง / Interview ยังไม่เคยซ้อม / มีเวลาอ่านวันละ 3 ชั่วโมง ควรทำอย่างไร?', options: ['A. อ่าน English ทั้ง 3 ชั่วโมงทุกวัน', 'B. ให้น้ำหนัก English มากที่สุด แต่ยังฝึก Analytical และ Interview สม่ำเสมอ', 'C. งด Interview เพราะคะแนนน้อยกว่า', 'D. อ่านเฉพาะสิ่งที่ชอบ'], ans: 1, exp: 'จัดสรรทรัพยากรโดยแก้จุดอ่อนแต่ยังคงเตรียมพร้อมครบทุกมิติ' },
+                { id: 'p3_8', cat: 'Adaptability', q: '8) คุณวางแผนอ่านไว้แล้ว แต่มีประกาศใหม่เพิ่มรายละเอียดข้อสอบ ควรทำอย่างไร?', options: ['A. ใช้แผนเดิม', 'B. ประเมินประกาศใหม่และปรับแผนให้สอดคล้อง', 'C. หยุดเตรียมสอบ', 'D. รอคนอื่นสรุปทั้งหมด'], ans: 1, exp: 'ความสามารถในการปรับตัวตามข้อมูลใหม่ที่น่าเชื่อถือ' },
+                { id: 'p3_9', cat: 'Adaptability', q: '9) เคยใช้วิธีอ่านเดิมแล้วได้ผลไม่ดี ควรทำอย่างไร?', options: ['A. ใช้วิธีเดิมต่อ', 'B. ทดลองวิธีใหม่และประเมินผล', 'C. หยุดอ่าน', 'D. เปลี่ยนทุกอย่างพร้อมกันโดยไม่วางแผน'], ans: 1, exp: 'ทดลองและประเมินผลลัพธ์ ไม่ดันทุรังใช้วิธีเดิมที่ไม่เห็นผล' },
+                { id: 'p3_10', cat: 'Learning Agility', q: '10) หลังทำ Mock Test คุณผิดคำถามประเภทเดียวกันซ้ำ ๆ สิ่งใดดีที่สุด?', options: ['A. ทำชุดใหม่ต่อทันที', 'B. วิเคราะห์ว่าผิดเพราะไม่รู้เนื้อหา อ่านโจทย์ผิด หรือคิดผิดขั้นตอน แล้วแก้จุดนั้น', 'C. จำเฉลย', 'D. ข้ามหมวดนี้'], ans: 1, exp: 'ใช้ Feedback วิเคราะห์หารูปแบบข้อผิดพลาดเพื่อแก้ไขเฉพาะจุด' },
+                { id: 'p3_11', cat: 'Ethics', q: '11) เพื่อนขอไฟล์คำตอบของแบบทดสอบที่กำหนดให้ทำด้วยตนเอง ควรทำอย่างไร?', options: ['A. ส่งให้เพราะเป็นเพื่อน', 'B. ไม่ส่งคำตอบ แต่ช่วยอธิบายหลักคิดหรือช่วยทบทวนแทน', 'C. โพสต์คำตอบในกลุ่ม', 'D. ให้ลอกบางข้อ'], ans: 1, exp: 'ช่วยเหลือเพื่อนโดยไม่ทำลายจริยธรรมและความซื่อสัตย์' },
+                { id: 'p3_12', cat: 'Ethics', q: '12) พบว่าตนเองส่งข้อมูลผิดให้ทีมไปแล้ว ควรทำอย่างไร?', options: ['A. เงียบไว้', 'B. แก้ไฟล์โดยไม่บอก', 'C. แจ้งทีม แก้ข้อมูล และอธิบายผลกระทบถ้ามี', 'D. โทษระบบ'], ans: 2, exp: 'แสดงความรับผิดชอบ: ยอมรับ แจ้งแก้ไข และรับมือผลกระทบ' },
+                { id: 'p3_13', cat: 'Priority', q: '13) สมมติว่าวันนี้ต้องส่งเอกสารก่อน 16.00 น. มี Mock Test ตอนเย็น ซื้ออุปกรณ์ได้พรุ่งนี้ และคลิปติวดูย้อนหลังได้ เวลา 14.45 น. ควรทำอะไรก่อน?', options: ['A. ส่งเอกสารสมัคร', 'B. ทำ Mock Test', 'C. ซื้ออุปกรณ์', 'D. ดูคลิป'], ans: 0, exp: 'ส่งเอกสารมี Deadline เร่งด่วนที่สุดและมีผลกระทบต่อสิทธิ์' },
+                { id: 'p3_14', cat: 'Priority', q: '14) ถ้าทุกงานดูสำคัญเท่ากัน ควรทำอย่างไร?', options: ['A. ทำตามอารมณ์', 'B. จัดลำดับตาม deadline และผลกระทบ', 'C. เริ่มหลายงานพร้อมกัน', 'D. รอให้มีเวลามากขึ้น'], ans: 1, exp: 'ใช้หลัก Deadline + Impact ในการจัดลำดับความสำคัญ' },
+
+                // Situation Practice
+                { id: 'p3_sp1', cat: 'Situation Practice', q: '1) ทีมได้รับงานใหม่ที่ต้องส่งเร็วขึ้น 2 วัน ควรทำอย่างไร?', options: ['A. ทำทุกอย่างเอง', 'B. ทบทวนงาน แบ่งหน้าที่ใหม่ และสื่อสาร deadline', 'C. บอกว่าทำไม่ได้ทันที', 'D. ปล่อยให้สมาชิกจัดการเอง'], ans: 1, exp: 'สะท้อน Adaptability + Teamwork + Planning' },
+                { id: 'p3_sp2', cat: 'Situation Practice', q: '2) สมาชิกใหม่ไม่กล้าพูดความคิดเห็น สิ่งใดเหมาะสมที่สุด?', options: ['A. ไม่ต้องถาม', 'B. เปิดโอกาสให้แสดงความคิดเห็นและถามอย่างเจาะจง', 'C. ให้ทำตามคำสั่งอย่างเดียว', 'D. ตัดออกจากงานสำคัญ'], ans: 1, exp: 'เปิดโอกาสให้ทุกคนมีส่วนร่วมในการทำงานทีม' },
+                { id: 'p3_sp3', cat: 'Situation Practice', q: '3) ได้ feedback ว่างานยังไม่ชัดเจน ควรทำอย่างไร?', options: ['A. ไม่เห็นด้วยทันที', 'B. ขอจุดที่ควรปรับ แล้วนำไปแก้', 'C. ลบงานทั้งหมด', 'D. บอกว่าไม่มีเวลา'], ans: 1, exp: 'สะท้อน Learning Agility ยอมรับและปรับปรุงตาม feedback' },
+                { id: 'p3_sp4', cat: 'Situation Practice', q: '4) ทีมใช้วิธีเดิมมานาน แต่มีข้อมูลใหม่ว่าวิธีอื่นอาจมีประสิทธิภาพกว่า ควรทำอย่างไร?', options: ['A. ใช้วิธีเดิมต่อเพราะคุ้นเคย', 'B. ทดลองวิธีใหม่ในขอบเขตที่เหมาะสมและประเมินผล', 'C. เปลี่ยนทั้งหมดทันทีโดยไม่ตรวจสอบ', 'D. ปฏิเสธข้อมูลใหม่'], ans: 1, exp: 'เปิดรับนวัตกรรมและการตัดสินใจด้วยหลักฐาน' }
+            ],
+
+            mock: [
+                // PART A - ENGLISH (12 ข้อ)
+                { id: 'm_1', cat: 'English', q: '1) The hospital provides adequate equipment for every ward. "adequate" means:', options: ['A. enough', 'B. modern', 'C. expensive', 'D. limited'], ans: 0, exp: 'adequate = เพียงพอ (enough)' },
+                { id: 'm_2', cat: 'English', q: '2) Although the ward was busy, the team remained _____ and finished on time.', options: ['A. organize', 'B. organized', 'C. organizing', 'D. organization'], ans: 1, exp: 'หลัง remained ต้องการ adjective อธิบายสภาพ (organized)' },
+                { id: 'm_3', cat: 'English', q: '3) She has worked at this hospital _____ 2020.', options: ['A. since', 'B. for', 'C. during', 'D. within'], ans: 0, exp: 'since ใช้กับจุดเริ่มต้นของเวลา (ตั้งแต่ปี 2020)' },
+                { id: 'm_4', cat: 'English', q: '4) The supervisor asked the staff _____ the report before Friday.', options: ['A. submit', 'B. to submit', 'C. submitting', 'D. submitted'], ans: 1, exp: 'โครงสร้าง ask someone to do something' },
+                { id: 'm_5', cat: 'English', q: '5) A colleague says: "Could you help me move this bed?"', options: ['A. Sure, I\'ll be right there.', 'B. That is not my job.', 'C. Ask someone else.', 'D. Maybe later, I am busy.'], ans: 0, exp: 'ตอบรับการช่วยเหลืออย่างสุภาพ' },
+                { id: 'm_6', cat: 'English', q: '6) The schedule was _____ after many staff reported problems with it.', options: ['A. revised', 'B. ignored', 'C. printed', 'D. delayed'], ans: 0, exp: 'เมื่อมีรายงานปัญหา ตารางจึงถูกปรับปรุง/แก้ไข (revised)' },
+                { id: 'm_7', cat: 'English', passage: 'Many hospitals now use electronic records instead of paper files. Staff can find information faster and share it safely between departments. However, they need training before the system works well.', q: '7) What advantage does the passage mention?', options: ['A. Lower cost', 'B. Faster access and safer sharing', 'C. Fewer patients', 'D. Less paperwork for patients'], ans: 1, exp: 'ตรงกับ "find information faster and share it safely"' },
+                { id: 'm_8', cat: 'English', q: '8) From the same passage, what does the passage say is needed?', options: ['A. More paper files', 'B. Training for staff', 'C. A new building', 'D. Longer shifts'], ans: 1, exp: 'ตรงกับ "they need training before the system works well."' },
+                { id: 'm_9', cat: 'English', q: '9) Everyone _____ asked to arrive fifteen minutes early.', options: ['A. is', 'B. are', 'C. were', 'D. be'], ans: 0, exp: 'Everyone ถือเป็นประธานเอกพจน์ ใช้ is' },
+                { id: 'm_10', cat: 'English', q: '10) He explained the procedure slowly _____ the patient could understand it.', options: ['A. so', 'B. so that', 'C. because', 'D. although'], ans: 1, exp: 'so that แสดงวัตถุประสงค์ (เพื่อที่ว่า)' },
+                { id: 'm_11', cat: 'English', q: '11) "I\'m sorry for the delay." What is the most appropriate reply in a formal setting?', options: ['A. It\'s fine, thank you for letting me know.', 'B. You always say that.', 'C. I knew it.', 'D. Forget it.'], ans: 0, exp: 'สุภาพ รับรู้ข้อมูล และเป็นมืออาชีพ' },
+                { id: 'm_12', cat: 'English', q: '12) Clear communication _____ mistakes in busy wards.', options: ['A. increases', 'B. reduces', 'C. creates', 'D. ignores'], ans: 1, exp: 'การสื่อสารที่ชัดเจนช่วยลด (reduces) ความผิดพลาด' },
+
+                // PART B - ANALYTICAL THINKING (7 ข้อ)
+                { id: 'm_13', cat: 'Analytical', q: '13) หน่วยงานหนึ่งพบว่า หลังจัดอบรมการสื่อสาร จำนวนข้อร้องเรียนลดลง ข้อสรุปใดเหมาะสมที่สุด?', options: ['A. การอบรมทำให้ข้อร้องเรียนหมดไป', 'B. การอบรมอาจมีส่วนช่วยลดข้อร้องเรียน', 'C. ข้อร้องเรียนลดลงเพราะผู้รับบริการน้อยลง', 'D. การอบรมไม่เกี่ยวข้องกับข้อร้องเรียน'], ans: 1, exp: 'ข้อมูลบอกลำดับเวลา แต่ไม่ยืนยันสาเหตุเดียว จึงควรสรุปว่า "อาจมีส่วนช่วย"' },
+                { id: 'm_14', cat: 'Analytical', q: '14) ข้อใดเป็นข้อเท็จจริงที่ตรวจสอบได้มากที่สุด?', options: ['A. การมาก่อนเวลาเป็นนิสัยที่ดีที่สุด', 'B. ทุกคนควรมาก่อนเวลา', 'C. เวลาเข้างานของพนักงานถูกบันทึกไว้ในระบบ', 'D. คนมาสายคือคนไม่รับผิดชอบ'], ans: 2, exp: 'ข้อ C ตรวจสอบข้อมูลจากบันทึกในระบบได้ ข้ออื่นเป็นความคิดเห็นประเมินค่า' },
+                { id: 'm_15', cat: 'Analytical', q: '15) A มากกว่า B และ C น้อยกว่า B ข้อใดต้องเป็นจริง?', options: ['A. A มากกว่า C', 'B. C มากกว่า A', 'C. A เท่ากับ C', 'D. สรุปไม่ได้'], ans: 0, exp: 'จาก A > B และ C < B (นั่นคือ B > C) สรุปได้ว่า A > C' },
+                { id: 'm_16', cat: 'Analytical', q: '16) ทำข้อสอบภาษาอังกฤษถูก 39 ข้อ จาก 60 ข้อ คิดเป็นร้อยละเท่าใด?', options: ['A. 60%', 'B. 65%', 'C. 70%', 'D. 75%'], ans: 1, exp: '(39 / 60) * 100 = 65%' },
+                { id: 'm_17', cat: 'Analytical', q: '17) ต้องไปถึงสนามสอบเวลา 07.45 น. เดินทาง 1 ชั่วโมง 20 นาที และเผื่อเวลาอีก 15 นาที ควรออกจากบ้านอย่างช้าที่สุดกี่โมง?', options: ['A. 06.10 น.', 'B. 06.25 น.', 'C. 06.40 น.', 'D. 07.00 น.'], ans: 0, exp: '07.45 - เผื่อ 15 นาที = 07.30 -> ลบเวลาเดินทาง 1 ชม. 20 นาที = 06.10 น.' },
+                { id: 'm_18', cat: 'Analytical', q: '18) เวลา 15.00 น. มีงานค้าง 4 อย่าง: ส่งเอกสารที่ปิดรับ 16.00 น. วันนี้ / ซ้อมสัมภาษณ์ / ซื้อหนังสือ / จัดโต๊ะอ่านหนังสือ ควรทำสิ่งใดก่อน?', options: ['A. ส่งเอกสาร', 'B. ซ้อมสัมภาษณ์', 'C. ซื้อหนังสือ', 'D. จัดโต๊ะอ่านหนังสือ'], ans: 0, exp: 'ส่งเอกสารมี Deadline วันนี้ 16.00 น. ต้องทำก่อนทันที' },
+                { id: 'm_19', cat: 'Analytical', q: '19) ผลฝึกล่าสุด English 68% / Analytical 52% / Competency 71% เหลือเวลา 5 วัน ควรทำอย่างไร?', options: ['A. ทุ่มเวลาให้ Competency', 'B. ให้น้ำหนัก Analytical มากที่สุด แต่ยังฝึกอีกสองด้าน', 'C. แบ่งเวลาเท่ากันทั้งสามด้าน', 'D. หยุดฝึก Analytical เพราะคะแนนต่ำ'], ans: 1, exp: 'Analytical เป็นจุดอ่อนที่สุด และเกณฑ์ขั้นต่ำกำหนดรายด้าน จึงทิ้งด้านอื่นไม่ได้' },
+
+                // PART C - FUTURE WORK COMPETENCY (5 ข้อ)
+                { id: 'm_20', cat: 'Competency', q: '20) เพื่อนร่วมทีมเข้าใจคำสั่งคลาดเคลื่อนและกำลังทำงานผิดทิศทาง ควรทำสิ่งใดก่อน?', options: ['A. รอให้ทำเสร็จแล้วค่อยบอก', 'B. ทักทันทีอย่างสุภาพ แล้วทบทวนเป้าหมายร่วมกัน', 'C. แจ้งหัวหน้าอย่างเดียว', 'D. รับงานส่วนนั้นมาทำแทนทั้งหมด'], ans: 1, exp: 'แก้ไขความเข้าใจให้เร็วที่สุดอย่างสุภาพ และทบทวนเป้าหมายร่วมกัน' },
+                { id: 'm_21', cat: 'Competency', q: '21) คุณพบว่าตนเองกรอกข้อมูลผิดในเอกสารที่ส่งออกไปแล้ว ควรทำอย่างไร?', options: ['A. รอให้มีคนทักก่อน', 'B. แจ้งผู้เกี่ยวข้องทันที แก้ไข และบอกผลกระทบถ้ามี', 'C. แก้ไขเงียบ ๆ โดยไม่บอกใคร', 'D. อธิบายว่าไม่ใช่ความผิดของตน'], ans: 1, exp: 'ความรับผิดชอบคือ ยอมรับ แจ้งผู้เกี่ยวข้อง แก้ไข และสื่อสารผลกระทบ' },
+                { id: 'm_22', cat: 'Competency', q: '22) ได้รับมอบหมายงานประเภทที่ไม่เคยทำมาก่อน ควรเริ่มอย่างไร?', options: ['A. ปฏิเสธเพราะไม่มีประสบการณ์', 'B. ถามขอบเขตงานและตัวอย่างผลลัพธ์ที่คาดหวัง แล้ววางแผน', 'C. ลงมือทำทันทีโดยไม่ถาม', 'D. ขอให้คนอื่นทำแทน'], ans: 1, exp: 'สอบถามเป้าหมายและขอบเขต แล้ววางแผนก่อนเริ่มทำ' },
+                { id: 'm_23', cat: 'Competency', q: '23) ทีมเห็นต่างเรื่องวิธีทำงานและเวลาใกล้หมด ควรทำอย่างไร?', options: ['A. ให้คนอาวุโสที่สุดตัดสิน', 'B. เลือกวิธีที่มีข้อมูลรองรับ และตกลงเกณฑ์วัดผลร่วมกัน', 'C. ต่างคนต่างทำวิธีของตัวเอง', 'D. ขอเลื่อนกำหนดส่งออกไปก่อน'], ans: 1, exp: 'ใช้ข้อมูลและเกณฑ์วัดผลร่วมกันในการตัดสินใจ' },
+                { id: 'm_24', cat: 'Competency', q: '24) เพื่อนขอให้ลงชื่อเข้าร่วมกิจกรรมแทน ทั้งที่เพื่อนไม่ได้เข้าร่วมจริง ควรทำอย่างไร?', options: ['A. ลงชื่อให้เพราะเป็นเพื่อนสนิท', 'B. ปฏิเสธ และแนะนำให้แจ้งผู้รับผิดชอบตามจริง', 'C. ลงชื่อให้ครั้งเดียวแล้วบอกว่าไม่ทำอีก', 'D. เงียบไว้แล้วไม่ตอบ'], ans: 1, exp: 'รักษาความซื่อสัตย์และจริยธรรมโดยปฏิเสธอย่างเหมาะสม' }
+            ]
+        };
+
+        const part4Content = {
+            intro: 'การสัมภาษณ์ช่วยให้ผู้คัดเลือกเห็นแรงจูงใจ ความเข้าใจตนเอง และความพร้อมต่อการเรียน ไม่ใช่วัดเพียงคนพูดเก่ง ให้ใช้กรอบ **E-R-E-F** (Experience - Reason - Evidence - Future) ในการร่างคำตอบ',
+            groups: [
+                {
+                    title: 'กลุ่มที่ 1: แรงจูงใจ',
+                    qs: [
+                        '1. ทำไมจึงอยากเรียนพยาบาล?',
+                        '2. ทำไมจึงตัดสินใจเรียนพยาบาลตอนนี้?',
+                        '3. อะไรทำให้มั่นใจว่าวิชาชีพนี้เหมาะกับคุณ?',
+                        '4. ถ้าเรียนพยาบาลแล้วพบว่ายากกว่าที่คิด จะทำอย่างไร?',
+                        '5. หากไม่ได้รับคัดเลือกครั้งนี้ จะทำอย่างไร?'
+                    ]
+                },
+                {
+                    title: 'กลุ่มที่ 2: การเปลี่ยนสาย',
+                    qs: [
+                        '6. จบปริญญาตรีแล้ว ทำไมจึงอยากกลับมาเรียนใหม่?',
+                        '7. ความรู้จากปริญญาเดิมจะช่วยการเรียนพยาบาลอย่างไร?',
+                        '8. พร้อมเริ่มต้นใหม่กับผู้เรียนที่อาจอายุน้อยกว่าหรือไม่?',
+                        '9. ครอบครัวเข้าใจและสนับสนุนการตัดสินใจนี้หรือไม่?',
+                        '10. ถ้ารายได้ลดลงในช่วงเรียน จะจัดการอย่างไร?'
+                    ]
+                },
+                {
+                    title: 'กลุ่มที่ 3: เข้าใจวิชาชีพ',
+                    qs: [
+                        '11. คุณเข้าใจบทบาทของพยาบาลอย่างไร?',
+                        '12. สิ่งที่คิดว่ายากที่สุดของการเรียนพยาบาลคืออะไร?',
+                        '13. ถ้าต้องสื่อสารกับผู้รับบริการที่กำลังไม่พอใจ จะทำอย่างไร?',
+                        '14. พยาบาลที่ดีควรมีคุณสมบัติอะไร?',
+                        '15. ถ้าเห็นเพื่อนปฏิบัติต่อผู้ป่วยไม่เหมาะสม จะทำอย่างไร?'
+                    ]
+                },
+                {
+                    title: 'กลุ่มที่ 4: ความพร้อม',
+                    qs: [
+                        '16. คุณจะบริหารเวลาระหว่างเรียนอย่างไร?',
+                        '17. มีภาระครอบครัวหรือการทำงานหรือไม่ และจะจัดการอย่างไร?',
+                        '18. หากต้องฝึกเช้าหรือมีตารางเรียนแน่น คุณพร้อมหรือไม่?',
+                        '19. คุณเตรียมตัวด้านสุขภาพและความเครียดอย่างไร?',
+                        '20. ใครเป็นระบบสนับสนุนของคุณ?'
+                    ]
+                },
+                {
+                    title: 'กลุ่มที่ 5: บุคลิก การทำงานร่วมกัน และความเครียด',
+                    qs: [
+                        '21. จุดแข็งของคุณคืออะไร?',
+                        '22. จุดที่ต้องพัฒนาคืออะไร?',
+                        '23. เคยมีความขัดแย้งกับเพื่อนร่วมงานหรือไม่ จัดการอย่างไร?',
+                        '24. เมื่อเครียดมาก คุณจัดการอย่างไร?',
+                        '25. เคยได้รับคำวิจารณ์ที่ไม่สบายใจหรือไม่ แล้วทำอย่างไร?'
+                    ]
+                },
+                {
+                    title: 'กลุ่มที่ 6: จริยธรรมและอนาคต',
+                    qs: [
+                        '26. หากเพื่อนขอให้ช่วยทำสิ่งที่ไม่ถูกต้อง คุณจะทำอย่างไร?',
+                        '27. ถ้าทำผิดพลาด คุณจะทำอย่างไร?',
+                        '28. ในสถานการณ์สมมติ หากผู้รับบริการปฏิเสธการดูแลบางอย่าง คุณจะทำอย่างไร?',
+                        '29. หลังเรียนจบอยากทำอะไร?',
+                        '30. อีก 5 ปี คุณอยากเห็นตัวเองเป็นอย่างไร?'
+                    ]
+                },
+                {
+                    title: 'คำถามสัมภาษณ์เชิงสถานการณ์ (Situational Interview)',
+                    qs: [
+                        '1. เพื่อนในกลุ่มไม่ทำงาน แต่ต้องส่งพรุ่งนี้',
+                        '2. อาจารย์ตำหนิคุณต่อหน้ากลุ่ม',
+                        '3. คะแนนสอบครั้งแรกต่ำมาก',
+                        '4. ต้องเลือกระหว่างงานพิเศษกับกิจกรรมเรียนสำคัญ',
+                        '5. เพื่อนอยากคัดลอกงานของคุณ',
+                        '6. ผู้รับบริการไม่พอใจและพูดเสียงดัง',
+                        '7. คุณกับเพื่อนมีความคิดเห็นต่างกันมาก',
+                        '8. มีหลายงานเข้ามาพร้อมกัน',
+                        '9. คุณไม่รู้คำตอบที่กรรมการถาม',
+                        '10. กรรมการถามคำถามที่ทำให้กดดัน'
+                    ]
+                }
+            ]
+        };
+
+        // User answers state
+        let userAnswers = {};
+        let mockTimerInterval = null;
+        let mockSecondsLeft = 28 * 60;
+
+        window.onload = function() {
+            renderQuizSection('part1');
+            renderQuizSection('part2');
+            renderQuizSection('part3');
+            renderQuizSection('mock');
+            renderPart4();
+        };
+
+        function switchTab(tabId) {
+            const tabs = ['dashboard', 'part1', 'part2', 'part3', 'part4', 'mock'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`view-${t}`);
+                const nav = document.getElementById(`nav-${t}`);
+                if (el) el.classList.add('hidden');
+                if (nav) {
+                    nav.classList.remove('bg-teal-900', 'bg-teal-700', 'text-white');
+                    if (t !== 'mock') nav.classList.add('text-teal-100');
+                }
+            });
+
+            const currentView = document.getElementById(`view-${tabId}`);
+            if (currentView) currentView.classList.remove('hidden');
+
+            const currentNav = document.getElementById(`nav-${tabId}`);
+            if (currentNav && tabId !== 'mock') {
+                currentNav.classList.add('bg-teal-900', 'text-white');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function renderQuizSection(partKey) {
+            const container = document.getElementById(`container-${partKey}`);
+            if (!container) return;
+
+            const questions = quizData[partKey];
+            let html = '';
+            let currentPassage = '';
+
+            questions.forEach((item, index) => {
+                if (item.passage && item.passage !== currentPassage) {
+                    currentPassage = item.passage;
+                    html += `
+                        <div class="bg-amber-50/80 border-l-4 border-amber-500 p-4 rounded-r-xl my-4 text-slate-800 text-sm leading-relaxed">
+                            <span class="font-bold text-amber-900 block mb-1">📖 บทอ่าน / Passage:</span>
+                            ${item.passage}
+                        </div>
+                    `;
+                }
+
+                if (item.table) {
+                    html += `
+                        <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl my-4 text-slate-800 text-xs sm:text-sm font-mono whitespace-pre-wrap">
+                            ${item.table}
+                        </div>
+                    `;
+                }
+
+                html += `
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 space-y-4" id="card-${item.id}">
+                        <div class="flex items-start justify-between gap-2">
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">${item.cat}</span>
+                            <span class="text-xs text-slate-400">ข้อที่ ${index + 1}</span>
+                        </div>
+                        <div class="text-base font-semibold text-slate-800 leading-snug">
+                            ${item.q}
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                            ${item.options.map((opt, optIdx) => `
+                                <button type="button" 
+                                    onclick="selectAnswer('${partKey}', '${item.id}', ${optIdx})"
+                                    id="btn-${item.id}-${optIdx}"
+                                    class="opt-btn-${item.id} text-left p-3 rounded-xl border border-slate-200 text-sm text-slate-700 hover:bg-teal-50 hover:border-teal-300 transition duration-150 flex items-center justify-between">
+                                    <span>${opt}</span>
+                                    <span class="w-4 h-4 rounded-full border border-slate-300 flex items-center justify-center text-xs check-icon"></span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="exp-${item.id}" class="hidden mt-4 p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-700">
+                            <strong class="text-teal-700 block mb-1">💡 เฉลย & วิธีคิด:</strong>
+                            ${item.exp}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function selectAnswer(partKey, qId, optIdx) {
+            userAnswers[qId] = optIdx;
+
+            // Reset buttons style for this question
+            const buttons = document.querySelectorAll(`.opt-btn-${qId}`);
+            buttons.forEach((btn, idx) => {
+                if (idx === optIdx) {
+                    btn.className = `opt-btn-${qId} text-left p-3 rounded-xl border-2 border-teal-600 bg-teal-50 text-teal-900 font-medium transition duration-150 flex items-center justify-between`;
+                } else {
+                    btn.className = `opt-btn-${qId} text-left p-3 rounded-xl border border-slate-200 text-sm text-slate-700 hover:bg-teal-50 hover:border-teal-300 transition duration-150 flex items-center justify-between`;
+                }
+            });
+        }
+
+        function submitSection(partKey) {
+            const questions = quizData[partKey];
+            let score = 0;
+            let answeredCount = 0;
+
+            questions.forEach(item => {
+                const userAns = userAnswers[item.id];
+                const expEl = document.getElementById(`exp-${item.id}`);
+                const cardEl = document.getElementById(`card-${item.id}`);
+
+                if (userAns !== undefined) {
+                    answeredCount++;
+                    if (userAns === item.ans) {
+                        score++;
+                        if (cardEl) cardEl.classList.add('border-emerald-300', 'bg-emerald-50/20');
+                    } else {
+                        if (cardEl) cardEl.classList.add('border-rose-300', 'bg-rose-50/20');
+                    }
+                }
+                
+                // Show explanations
+                if (expEl) expEl.classList.remove('hidden');
+            });
+
+            const percent = Math.round((score / questions.length) * 100);
+            const resultBox = document.getElementById(`result-${partKey}`);
+            
+            let passBadge = percent >= 30 
+                ? `<span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold">ผ่านเกณฑ์ขั้นต่ำ (≥30%)</span>`
+                : `<span class="px-3 py-1 bg-rose-100 text-rose-800 rounded-full text-xs font-bold">ยังไม่ผ่านเกณฑ์ขั้นต่ำ (<30%)</span>`;
+
+            resultBox.className = "bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-3 mb-6";
+            resultBox.innerHTML = `
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <h3 class="text-xl font-bold text-slate-800">ผลการทดสอบ ${partKey.toUpperCase()}</h3>
+                    ${passBadge}
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 py-2">
+                    <div class="bg-slate-50 p-3 rounded-xl">
+                        <div class="text-xs text-slate-500">คะแนนที่ได้</div>
+                        <div class="text-2xl font-bold text-teal-700">${score} / ${questions.length}</div>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl">
+                        <div class="text-xs text-slate-500">คิดเป็นร้อยละ</div>
+                        <div class="text-2xl font-bold text-slate-800">${percent}%</div>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl col-span-2 sm:col-span-1">
+                        <div class="text-xs text-slate-500">ตอบแล้ว</div>
+                        <div class="text-2xl font-bold text-slate-800">${answeredCount} / ${questions.length}</div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500">เฉลยและวิธีคิดของทุกข้อถูกแสดงด้านล่างข้อสอบแล้ว</p>
+            `;
+            resultBox.classList.remove('hidden');
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startMockTimer() {
+            const btn = document.getElementById('btn-start-mock');
+            if (mockTimerInterval) {
+                clearInterval(mockTimerInterval);
+                mockTimerInterval = null;
+                btn.innerText = "เริ่มจับเวลา";
+                btn.className = "bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl font-medium transition shadow";
+                return;
+            }
+
+            btn.innerText = "หยุดเวลา";
+            btn.className = "bg-rose-500 hover:bg-rose-600 text-white px-5 py-2.5 rounded-xl font-medium transition shadow";
+
+            mockTimerInterval = setInterval(() => {
+                if (mockSecondsLeft <= 0) {
+                    clearInterval(mockTimerInterval);
+                    alert("หมดเวลาสำหรับการทำ Mock Test!");
+                    submitMockTest();
+                    return;
+                }
+                mockSecondsLeft--;
+                const mins = Math.floor(mockSecondsLeft / 60);
+                const secs = mockSecondsLeft % 60;
+                document.getElementById('timer-box').innerText = 
+                    `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function submitMockTest() {
+            if (mockTimerInterval) clearInterval(mockTimerInterval);
+            const questions = quizData.mock;
+            
+            let scores = { English: 0, Analytical: 0, Competency: 0 };
+            let totals = { English: 12, Analytical: 7, Competency: 5 };
+
+            questions.forEach(item => {
+                const userAns = userAnswers[item.id];
+                const expEl = document.getElementById(`exp-${item.id}`);
+                const cardEl = document.getElementById(`card-${item.id}`);
+
+                if (userAns !== undefined && userAns === item.ans) {
+                    scores[item.cat]++;
+                    if (cardEl) cardEl.classList.add('border-emerald-300', 'bg-emerald-50/20');
+                } else {
+                    if (cardEl) cardEl.classList.add('border-rose-300', 'bg-rose-50/20');
+                }
+                if (expEl) expEl.classList.remove('hidden');
+            });
+
+            const totalScore = scores.English + scores.Analytical + scores.Competency;
+            const totalPercent = Math.round((totalScore / 24) * 100);
+
+            const pEng = Math.round((scores.English / totals.English) * 100);
+            const pAna = Math.round((scores.Analytical / totals.Analytical) * 100);
+            const pCom = Math.round((scores.Competency / totals.Competency) * 100);
+
+            const resultBox = document.getElementById('result-mock');
+            resultBox.className = "bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4 mb-6";
+            resultBox.innerHTML = `
+                <h3 class="text-2xl font-bold text-slate-800 border-b pb-3">สรุปผลคะแนน MOCK TEST (24 ข้อ)</h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-100">
+                        <div class="text-xs text-teal-800 font-medium">คะแนนรวมทั้งหมด</div>
+                        <div class="text-3xl font-extrabold text-teal-700">${totalScore} / 24</div>
+                        <div class="text-xs text-teal-600 mt-1">${totalPercent}%</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="text-xs text-slate-500">English (12 ข้อ)</div>
+                        <div class="text-2xl font-bold text-slate-800">${scores.English} / 12</div>
+                        <div class="text-xs ${pEng >= 30 ? 'text-emerald-600' : 'text-rose-600'} font-semibold mt-1">${pEng}% ${pEng >= 30 ? '✓ ผ่าน 30%' : '✗ ไม่ผ่าน 30%'}</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="text-xs text-slate-500">Analytical (7 ข้อ)</div>
+                        <div class="text-2xl font-bold text-slate-800">${scores.Analytical} / 7</div>
+                        <div class="text-xs ${pAna >= 30 ? 'text-emerald-600' : 'text-rose-600'} font-semibold mt-1">${pAna}% ${pAna >= 30 ? '✓ ผ่าน 30%' : '✗ ไม่ผ่าน 30%'}</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div class="text-xs text-slate-500">Competency (5 ข้อ)</div>
+                        <div class="text-2xl font-bold text-slate-800">${scores.Competency} / 5</div>
+                        <div class="text-xs ${pCom >= 30 ? 'text-emerald-600' : 'text-rose-600'} font-semibold mt-1">${pCom}% ${pCom >= 30 ? '✓ ผ่าน 30%' : '✗ ไม่ผ่าน 30%'}</div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-xl text-xs sm:text-sm text-slate-700 space-y-1 border border-slate-200">
+                    <strong class="text-slate-900 block mb-1">📌 ข้อแนะนำในการอ่านผลคะแนน:</strong>
+                    <p>• ตามประกาศสถาบันฯ คะแนนข้อเขียน<strong>แต่ละด้านต้องไม่น้อยกว่า 30%</strong> ดังนั้นหากมีด้านใดต่ำกว่า 30% ควรเน้นกลับไปทบทวนใน Part นั้นทันที</p>
+                    <p>• ดูเฉลยและวิธีคิดแบบละเอียดของแต่ละข้อที่แสดงไว้ด้านล่าง</p>
+                </div>
+            `;
+            resultBox.classList.remove('hidden');
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderPart4() {
+            const container = document.getElementById('container-part4');
+            if (!container) return;
+
+            let html = `
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-2xl text-slate-800 text-sm leading-relaxed mb-6">
+                    <strong class="text-amber-900 block text-base mb-1">คำแนะนำการสัมภาษณ์</strong>
+                    ${part4Content.intro}
+                </div>
+            `;
+
+            part4Content.groups.forEach((group, gIdx) => {
+                html += `
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4">
+                        <h3 class="text-lg font-bold text-teal-800 border-b pb-2 flex items-center justify-between">
+                            <span>${group.title}</span>
+                            <span class="text-xs font-normal text-slate-400">กลุ่มที่ ${gIdx + 1}</span>
+                        </h3>
+                        <div class="space-y-4">
+                            ${group.qs.map((q, qIdx) => `
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                                    <div class="font-medium text-slate-800 text-sm sm:text-base">${q}</div>
+                                    <textarea 
+                                        placeholder="พิมพ์บันทึกแนวคำตอบของคุณที่นี่ (ใช้กรอบ E-R-E-F)..." 
+                                        class="w-full p-3 text-xs sm:text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white transition custom-scrollbar" 
+                                        rows="2"></textarea>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
